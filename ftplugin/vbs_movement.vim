@@ -1,8 +1,8 @@
-" vbs_movement.vim: Movement over VBScript subs / functions with ]m etc.
+" vbs_movement.vim: Movement over VBScript functions / properties / subs with ]m etc.
 "
 " DEPENDENCIES:
 "   - CountJump.vim, CountJump/Motion.vim, CountJump/TextObjects.vim autoload
-"     scripts.
+"     scripts
 "
 " Copyright: (C) 2012 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
@@ -17,20 +17,22 @@ if v:version < 700
     finish
 endif
 
-let s:patternFunctionBegin = '\c^\s*\%(\%(public\|private\)\s\+\)\%(sub\|function\)\>'
-let s:patternFunctionEnd = '^\c\s*end \%(sub\|function\)\>'
+let s:patternFunctionBegin = '\c^\s*\%(\%(public\|private\)\s\+\)\?\%(function\|property \%(get\|set\)\|sub\)\>'
+let s:patternFunctionEnd = '^\c\s*end \%(function\|property\|sub\)\>'
 
-"			Move around VBScript subs and functions:
-"]m			Go to [count] next start of a sub / function.
-"]M			Go to [count] next end of a sub / function.
-"[m			Go to [count] previous start of a sub / function.
-"[M			Go to [count] previous end of a sub / function.
+"			Move around VBScript functions, properties and subs:
+"]m			Go to [count] next start of a function / property / sub.
+"]M			Go to [count] next end of a function / property / sub.
+"[m			Go to [count] previous start of a function / property / sub.
+"[M			Go to [count] previous end of a function / property / sub.
 
 call CountJump#Motion#MakeBracketMotion('<buffer>', 'm', 'M', s:patternFunctionBegin, s:patternFunctionEnd, 0)
 
-"im			"inner method" text object, select [count] sub / function contents.
-"am			"a method" text object, select [count] sub / functions,
-"			including the sub / function definition and 'end function'.
+"im			"inner method" text object, select [count] function /
+"			property / sub contents.
+"am			"a method" text object, select [count] function /
+"			property / subs, including the function / property / sub
+"			definition and 'end ...'.
 call CountJump#TextObject#MakeWithCountSearch('<buffer>', 'm', 'ai', 'V', s:patternFunctionBegin, s:patternFunctionEnd)
 
 unlet s:patternFunctionBegin
