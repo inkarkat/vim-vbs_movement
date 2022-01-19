@@ -1,0 +1,94 @@
+*vbs_movement.txt*      Movement over VBScript classes / functions / properties / subs with ]m etc.
+
+			VBS_MOVEMENT    by Ingo Karkat
+							    *vbs_movement.vim*
+description			|vbs_movement-description|
+usage				|vbs_movement-usage|
+installation			|vbs_movement-installation|
+configuration			|vbs_movement-configuration|
+limitations			|vbs_movement-limitations|
+known problems			|vbs_movement-known-problems|
+todo				|vbs_movement-todo|
+history				|vbs_movement-history|
+
+==============================================================================
+DESCRIPTION					    *vbs_movement-description*
+
+This filetype plugin provides movement commands and text objects for Visual
+Basic Script classes, functions, properties, and subs.
+
+==============================================================================
+USAGE							  *vbs_movement-usage*
+                        Move around VBScript functions, properties and subs:
+]m                      Go to [count] next start of a function / property / sub.
+]M                      Go to [count] next end of a function / property / sub.
+[m                      Go to [count] previous start of a function / property / sub.
+[M                      Go to [count] previous end of a function / property / sub.
+
+]gm                     Go to [count] next start of a class.
+]gM                     Go to [count] next end of a class.
+[gm                     Go to [count] previous start of a class.
+[gM                     Go to [count] previous end of a class.
+
+im                      "inner method" text object, select [count] function /
+                        property / sub contents.
+am                      "a method" text object, select [count] function /
+                        property / subs, including the function / property / sub
+                        definition and 'end ...'.
+
+igm                     "inner class" text object, select [count] class contents.
+agm                     "a class" text object, select [count] classes, including
+                        the class definition and "end class"
+
+==============================================================================
+INSTALLATION					   *vbs_movement-installation*
+
+The code is hosted in a Git repo at
+    https://github.com/inkarkat/vim-vbs_movement
+You can use your favorite plugin manager, or "git clone" into a directory used
+for Vim |packages|. Releases are on the "stable" branch, the latest unstable
+development snapshot on "master".
+
+This script is also packaged as a |vimball|. If you have the "gunzip"
+decompressor in your PATH, simply edit the *.vmb.gz package in Vim; otherwise,
+decompress the archive first, e.g. using WinZip. Inside Vim, install by
+sourcing the vimball or via the |:UseVimball| command. >
+    vim vbs_movement*.vmb.gz
+    :so %
+To uninstall, use the |:RmVimball| command.
+
+DEPENDENCIES					   *vbs_movement-dependencies*
+
+- Requires Vim 7.0 or higher.
+- Requires the CountJump plugin (vimscript #3130).
+
+==============================================================================
+CONFIGURATION					  *vbs_movement-configuration*
+
+==============================================================================
+LIMITATIONS					    *vbs_movement-limitations*
+
+KNOWN PROBLEMS					 *vbs_movement-known-problems*
+
+TODO							   *vbs_movement-todo*
+
+IDEAS							  *vbs_movement-ideas*
+
+CONTRIBUTING					     *vbs_movement-contribute*
+
+Report any bugs, send patches, or suggest features via the issue tracker at
+https://github.com/inkarkat/vim-vbs_movement/issues or email (address below).
+
+==============================================================================
+HISTORY							*vbs_movement-history*
+
+04-Apr-2012
+First published version.
+
+==============================================================================
+Copyright: (C) 2012-2022 Ingo Karkat
+The VIM LICENSE applies to this plugin; see |copyright|.
+
+Maintainer:	Ingo Karkat <ingo@karkat.de>
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:
